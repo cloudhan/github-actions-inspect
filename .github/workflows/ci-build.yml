@@ -1,0 +1,21 @@
+name: build whl and uploads
+
+on:
+  push:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build-cpu:
+    runs-on: windows-2019
+    env:
+      TEMP: C:\\Users\\runneradmin\\Temp
+      TMP: C:\\Users\\runneradmin\\Temp
+      PYTHONUNBUFFERED: '1'
+    steps:
+    - name: Probe user home
+      run: ls ~
+    - name: Show disk info
+      run: Get-Volume -DriveLetter CD | Sort-Object DriveLetter
