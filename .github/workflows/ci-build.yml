@@ -21,8 +21,8 @@ jobs:
       run: Get-Volume -DriveLetter CD | Sort-Object DriveLetter
     - name: Show pagefile info original
       run: |
-        Get-WmiObject Win32_ComputerSystem -EnableAllPrivileges | select AutomaticManagedPagefile
-        Get-WmiObject Win32_PageFileSetting | Select Name, InitialSize, MaximumSize
+        Get-CimInstance Win32_ComputerSystem | Select AutomaticManagedPagefile
+        Get-CimInstance Win32_PageFileSetting | Select Name, InitialSize, MaximumSize
     - name: Configure pagefile
       uses: al-cheb/configure-pagefile-action@v1.2
       with:
@@ -31,5 +31,5 @@ jobs:
         disk-root: "C:"
     - name: Show pagefile info
       run: |
-        Get-WmiObject Win32_ComputerSystem -EnableAllPrivileges | select AutomaticManagedPagefile
-        Get-WmiObject Win32_PageFileSetting | Select Name, InitialSize, MaximumSize
+        Get-CimInstance Win32_ComputerSystem | Select AutomaticManagedPagefile
+        Get-CimInstance Win32_PageFileSetting | Select Name, InitialSize, MaximumSize
