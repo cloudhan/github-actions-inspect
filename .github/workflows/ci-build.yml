@@ -17,6 +17,10 @@ jobs:
     steps:
     - name: Show user home
       run: ls ~
+    - name: Show cpu info
+      run: Get-CimInstance Win32_Processor
+    - name: Show memory info
+      run: Get-CimInstance Win32_PhysicalMemory | Format-Table Tag, DeviceLocator, Capacity, Speed
     - name: Show disk info
       run: Get-Volume -DriveLetter CD | Sort-Object DriveLetter
     - name: Show pagefile info original
