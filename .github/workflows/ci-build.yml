@@ -21,9 +21,9 @@ jobs:
       run: Get-CimInstance Win32_Processor
     - name: Show memory info
       run: Get-CimInstance Win32_PhysicalMemory | Format-Table Tag, DeviceLocator, Capacity, Speed
-    - name: Show disk info
+    - name: Show disk info (original)
       run: Get-Volume -DriveLetter CD | Sort-Object DriveLetter
-    - name: Show pagefile info original
+    - name: Show pagefile info (original)
       run: |
         Get-CimInstance Win32_ComputerSystem | Select AutomaticManagedPagefile
         Get-CimInstance Win32_PageFileSetting | Select Name, InitialSize, MaximumSize
@@ -37,3 +37,5 @@ jobs:
       run: |
         Get-CimInstance Win32_ComputerSystem | Select AutomaticManagedPagefile
         Get-CimInstance Win32_PageFileSetting | Select Name, InitialSize, MaximumSize
+    - name: Show disk info
+      run: Get-Volume -DriveLetter CD | Sort-Object DriveLetter
