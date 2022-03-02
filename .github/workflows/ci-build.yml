@@ -63,3 +63,18 @@ jobs:
       run: ls ~/bzl_out
     - name: Show D:/bzl_out content
       run: ls ~/bzl_out
+
+    - name: Create ~/bzl_out and Link
+      run: |
+        mkdir ~/bzl_out -ErrorAction 0
+        New-Item -Type Junction -Target (Resolve-Path ~/bzl_out) -Path D:/bzl_out
+
+    - name: Bazel build
+      run: |
+        cd examples/cpp-tutorial/stage1
+        bazel --output_user_root=D:/bzl_out build //main:hello-world
+
+    - name: Show ~/bzl_out content
+      run: ls ~/bzl_out
+    - name: Show D:/bzl_out content
+      run: ls ~/bzl_out
