@@ -47,7 +47,7 @@ jobs:
     - name: Create ~/bzl_out and Link
       run: |
         mkdir ~/bzl_out -ErrorAction 0
-        New-Item -Type Junction -Target ~/bzl_out -Path D:/bzl_out
+        New-Item -Type Junction -Target (Resolve-Path ~/bzl_out) -Path D:/bzl_out
 
     - name: Show ~/bzl_out content
       run: ls ~/bzl_out
